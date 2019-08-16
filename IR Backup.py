@@ -4,8 +4,7 @@ import pulseio
 import adafruit_irremote
 from digitalio import DigitalInOut, Direction
 
-IRPin = DigitalInOut(board.D2) #Pin connected to IR receiver.
-IRPin.direction = Direction.INPUT
+IRPin = board.D2 #Pin connected to IR receiver.
 
 doorMotor = DigitalInOut(board.D) #Pin connected to door motor.
 doorMotor.direction = Direction.OUTPUT
@@ -43,7 +42,7 @@ def fuzzy_pulse_compare(pulse1, pulse2, fuzzyness=0.2):
     return True
 
 #Create pulse input and IR decoder.
-pulses = pulseio.PulseIn(IR_PIN, maxlen=200, idle_state=True)
+pulses = pulseio.PulseIn(IRPin, maxlen=200, idle_state=True)
 decoder = adafruit_irremote.GenericDecode()
 pulses.clear()
 pulses.resume()
