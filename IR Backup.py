@@ -33,13 +33,13 @@ button6=9119, 4519, 603, 537, 606, 535, 599, 541, 603, 537, 606, 535, 599, 541, 
 print('IR listener')
 #Fuzzy pulse comparison function:
 def fuzzy_pulse_compare(pulse1, pulse2, fuzzyness=0.2):
-    if len(pulse1) != len(pulse2):
-        return False
-    for i in range(len(pulse1)):
-        threshold = int(pulse1[i] * fuzzyness)
-        if abs(pulse1[i] - pulse2[i]) > threshold:
-            return False
-    return True
+	if len(pulse1) != len(pulse2):
+		return False
+	for i in range(len(pulse1)):
+		threshold = int(pulse1[i] * fuzzyness)
+		if abs(pulse1[i] - pulse2[i]) > threshold:
+			return False
+	return True
 
 #Create pulse input and IR decoder.
 pulses = pulseio.PulseIn(IRPin, maxlen=200, idle_state=True)
@@ -48,31 +48,31 @@ pulses.clear()
 pulses.resume()
 #Loop waiting to receive pulses.
 while True:
-    # Wait for a pulse to be detected.
-    detected = decoder.read_pulses(pulses)
-    print('got a pulse...')
-    print(detected)
-    if fuzzy_pulse_compare(button1, detected):#Close door
-        print('Button 1!')
+	# Wait for a pulse to be detected.
+	detected = decoder.read_pulses(pulses)
+	print('got a pulse...')
+	print(detected)
+	if fuzzy_pulse_compare(button1, detected):#Close door
+		print('Button 1!')
 		doorMotor.value = True
 		time.sleep(1.0)
 		doorMotor.value = False
-    if fuzzy_pulse_compare(button2, detected):#Light on
-        print('Button 2!')
+	if fuzzy_pulse_compare(button2, detected):#Light on
+		print('Button 2!')
 		lightOnMotor = True
 		time.sleep(1.0)
 		lightOnMotor = False
-    if fuzzy_pulse_compare(button3, detected):#Fan on
-        print('Button 3!')
+	if fuzzy_pulse_compare(button3, detected):#Fan on
+		print('Button 3!')
 		fanMotor = True
 		time.sleep(1.0)
 		fanMotor = False
-    if fuzzy_pulse_compare(button4, detected):
-        print('Button 4!')
-    if fuzzy_pulse_compare(button5, detected):#Light off
-        print('Button 5!')
+	if fuzzy_pulse_compare(button4, detected):
+		print('Button 4!')
+	if fuzzy_pulse_compare(button5, detected):#Light off
+		print('Button 5!')
 		lightOffMotor = True
 		time.sleep(1.0)
 		lightOffMotor = False
-    if fuzzy_pulse_compare(button6, detected):
-        print('Button 6!')
+	if fuzzy_pulse_compare(button6, detected):
+		print('Button 6!')
