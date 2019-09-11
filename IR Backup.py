@@ -4,9 +4,22 @@ import pulseio
 import adafruit_irremote
 from digitalio import DigitalInOut, Direction
 
+import adafruit_dotstar
+import board
+led = adafruit_dotstar.DotStar(board.APA102_SCK, board.APA102_MOSI, 1)
+led.brightness=0.0
+
 IRPin = board.D2 #Pin connected to IR receiver.
 
-doorMotor = DigitalInOut(board.D) #Pin connected to door motor.
+motorA = DigitalInOut(board.D4) #Pin connected to door motor.
+motorA.direction = Direction.OUTPUT
+motorA.value = False
+
+motorB = DigitalInOut(board.D3) #Pin connected to door motor.
+motorB.direction = Direction.OUTPUT
+motorB.value = False
+
+"""doorMotor = DigitalInOut(board.D) #Pin connected to door motor.
 doorMotor.direction = Direction.OUTPUT
 doorMotor.value = False
 
@@ -20,7 +33,7 @@ lightOffMotor.value = False
 
 fanMotor = DigitalInOut(board.D) #Pin connected to fan motor.
 fanMotor.direction = Direction.OUTPUT
-fanMotor.value = False
+fanMotor.value = False"""
 
 #Expected pulse, pasted in from previous recording REPL session:
 button1=9130, 4513, 598, 543, 601, 540, 604, 538, 606, 538, 595, 543, 601, 541, 603, 538, 606, 535, 599, 1655, 602, 1653, 604, 1651, 605, 1649, 598, 1657, 600, 1654, 603, 538, 606, 1659, 587, 543, 601, 539, 605, 536, 597, 544, 600, 1654, 603, 537, 606, 535, 599, 541, 603, 1651, 605, 1650, 597, 1667, 589, 1655, 602, 539, 615, 1639, 597, 1658, 599, 1655, 602
@@ -30,7 +43,7 @@ button4=9124, 4511, 600, 541, 603, 538, 606, 535, 598, 569, 575, 565, 579, 535, 
 button5=9136, 4511, 601, 540, 603, 539, 605, 563, 571, 543, 601, 567, 577, 565, 579, 536, 598, 543, 601, 1653, 604, 1650, 607, 1648, 598, 1657, 600, 1655, 602, 1653, 604, 538, 606, 1648, 598, 1657, 601, 569, 575, 1652, 604, 538, 606, 1648, 609, 560, 573, 542, 602, 539, 605, 536, 608, 1647, 599, 542, 602, 1654, 602, 539, 605, 1650, 607, 1648, 598, 1658, 599
 button6=9119, 4519, 603, 537, 606, 535, 599, 541, 603, 537, 606, 535, 599, 541, 603, 538, 606, 534, 599, 1655, 602, 1652, 604, 1650, 597, 1658, 598, 1656, 601, 1653, 603, 538, 606, 1648, 598, 542, 602, 1653, 604, 1650, 596, 544, 600, 1655, 602, 538, 606, 535, 598, 542, 602, 1652, 604, 537, 596, 544, 600, 1654, 603, 537, 597, 1657, 599, 1655, 602, 1652, 604
 
-print('IR listener')
+print('IR listener test')
 #Fuzzy pulse comparison function:
 def fuzzy_pulse_compare(pulse1, pulse2, fuzzyness=0.2):
 	if len(pulse1) != len(pulse2):
@@ -54,25 +67,19 @@ while True:
 	print(detected)
 	if fuzzy_pulse_compare(button1, detected):#Close door
 		print('Button 1!')
-		doorMotor.value = True
-		time.sleep(1.0)
-		doorMotor.value = False
+        motorA = True
+        time.sleep(1.0)
+        motorA = False
 	if fuzzy_pulse_compare(button2, detected):#Light on
 		print('Button 2!')
-		lightOnMotor = True
-		time.sleep(1.0)
-		lightOnMotor = False
 	if fuzzy_pulse_compare(button3, detected):#Fan on
 		print('Button 3!')
-		fanMotor = True
-		time.sleep(1.0)
-		fanMotor = False
 	if fuzzy_pulse_compare(button4, detected):
 		print('Button 4!')
 	if fuzzy_pulse_compare(button5, detected):#Light off
 		print('Button 5!')
-		lightOffMotor = True
+		"""lightOffMotor = True
 		time.sleep(1.0)
-		lightOffMotor = False
+		lightOffMotor = False"""
 	if fuzzy_pulse_compare(button6, detected):
 		print('Button 6!')
