@@ -11,29 +11,21 @@ led.brightness=0.0
 
 IRPin = board.D2 #Pin connected to IR receiver.
 
-motorA = DigitalInOut(board.D4) #Pin connected to door motor.
-motorA.direction = Direction.OUTPUT
-motorA.value = False
-
-motorB = DigitalInOut(board.D3) #Pin connected to door motor.
-motorB.direction = Direction.OUTPUT
-motorB.value = False
-
-"""doorMotor = DigitalInOut(board.D) #Pin connected to door motor.
-doorMotor.direction = Direction.OUTPUT
-doorMotor.value = False
-
-lightOnMotor = DigitalInOut(board.D) #Pin connected to light on motor.
+lightOnMotor = DigitalInOut(board.D0) #Pin connected to light on motor.
 lightOnMotor.direction = Direction.OUTPUT
 lightOnMotor.value = False
 
-lightOffMotor = DigitalInOut(board.D) #Pin connected to light off motor.
+lightOffMotor = DigitalInOut(board.D1) #Pin connected to light off motor.
 lightOffMotor.direction = Direction.OUTPUT
 lightOffMotor.value = False
 
-fanMotor = DigitalInOut(board.D) #Pin connected to fan motor.
+fanMotor = DigitalInOut(board.D3) #Pin connected to fan motor.
 fanMotor.direction = Direction.OUTPUT
-fanMotor.value = False"""
+fanMotor.value = False
+
+doorMotor = DigitalInOut(board.D4) #Pin connected to door motor.
+doorMotor.direction = Direction.OUTPUT
+doorMotor.value = False
 
 #Expected pulse, pasted in from previous recording REPL session:
 button1=9130, 4513, 598, 543, 601, 540, 604, 538, 606, 538, 595, 543, 601, 541, 603, 538, 606, 535, 599, 1655, 602, 1653, 604, 1651, 605, 1649, 598, 1657, 600, 1654, 603, 538, 606, 1659, 587, 543, 601, 539, 605, 536, 597, 544, 600, 1654, 603, 537, 606, 535, 599, 541, 603, 1651, 605, 1650, 597, 1667, 589, 1655, 602, 539, 615, 1639, 597, 1658, 599, 1655, 602
