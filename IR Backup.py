@@ -59,25 +59,25 @@ while True:
 	print(detected)
 	if fuzzy_pulse_compare(button1, detected):#Door close
 		print('Button 1!')
-		doorMotor = True
+		doorMotor.value = True
 		time.sleep(1.0)
-		doorMotor = False
+		doorMotor.value = False
 	if fuzzy_pulse_compare(button2, detected):#Light on
 		print('Button 2!')
-		lightOnMotor = True
+		lightOnMotor.value = True
 		time.sleep(1.0)
-		lightOnMotor = False
+		lightOnMotor.value = False
 	if fuzzy_pulse_compare(button3, detected):#Fan on
 		print('Button 3!')
-		fanMotor = True
+		fanMotor.value = True
 		time.sleep(1.0)
-		fanMotor = False
+		fanMotor.value = False
 	if fuzzy_pulse_compare(button4, detected):
 		print('Button 4!')
 	if fuzzy_pulse_compare(button5, detected):#Light off
 		print('Button 5!')
-		lightOffMotor = True
+		lightOffMotor.value = True
 		time.sleep(1.0)
-		lightOffMotor = False
+		lightOffMotor.value = False
 	if fuzzy_pulse_compare(button6, detected):
 		print('Button 6!')
