@@ -53,10 +53,12 @@ pulses.clear()
 pulses.resume()
 #Loop waiting to receive pulses.
 while True:
+	led.brightness=0.0
 	# Wait for a pulse to be detected.
 	detected = decoder.read_pulses(pulses)
 	print('got a pulse...')
 	print(detected)
+	led.brightness=1.0
 	if fuzzy_pulse_compare(button1, detected):#Door close
 		print('Button 1!')
 		doorMotor.value = True
