@@ -7,6 +7,7 @@ from digitalio import DigitalInOut, Direction
 motor = DigitalInOut(board.D2)
 motor.direction = Direction.OUTPUT
 motor.value = False
+
 while(True):
     if(motor.value):
         motor.value = False
