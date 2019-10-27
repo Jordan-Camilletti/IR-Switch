@@ -70,7 +70,7 @@ while True:
 		print('Button 3!')
 		fanMotor.value = True
 		time.sleep(0.5)
-        	fanMotor.value = False
+		fanMotor.value = False
 	if fuzzy_pulse_compare(button4, detected):
 		print('Button 4!')
 	if fuzzy_pulse_compare(button5, detected):#Light off
