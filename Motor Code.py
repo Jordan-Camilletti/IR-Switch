@@ -1,3 +1,4 @@
+#Just used to test motors and DIO pins
 import time
 import board
 import pulseio
